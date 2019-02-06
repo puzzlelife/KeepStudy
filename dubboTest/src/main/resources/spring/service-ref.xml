@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <!--<dubbo:consumer timeout="60000"/>-->
+    <!--引用dubbo验证服务-->
+    <dubbo:application name="xx" owner="xx" organization="hotel"/>
+
+    <!--<dubbo:reference id="xx"
+                     interface="xx"
+                     url="dubbo://xxx:22990"
+                     version="1.0" check="false"/>-->
+
+    <dubbo:reference interface="org.springframework.context.support.ClassPathXmlApplicationContext" check="false"
+                     id="xx" version="1.0" registry="qta"/>
+    <dubbo:registry id="qta" protocol="zookeeper" address="xx"
+                    group="xx"/>
+
+
+
+
+
+</beans>

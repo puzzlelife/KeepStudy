@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <!--用于生成随机数的种子，用于分桶，该字符串的hashcode被用于生成随机数的种子,修改后会改变uid到桶的映射方式，没事不要乱改-->
+    <RandomSeed>anythingRandomdly</RandomSeed>
+
+    <Buckets>
+        <bucket isLr="B" promotion="false" modelInstance="dangciSplitPureBucketModel"/>
+        <bucket isLr="D4" promotion="true" modelInstance="lrD4BucketModel"/>
+<bucket isLr="IOS_STABLE" modelName="D3" promotion="true" modelInstance="lrD2BucketModel"/>
+<bucket isLr="ADR_STABLE" modelName="D3" promotion="true" modelInstance="lrD2BucketModel"/>
+        <bucket isLr="BASE" promotion="true" modelInstance="dangciSplitPureBucketModel"/>
+        <bucket isLr="MOCK" promotion="true" modelInstance="mockBucketModel"/>
+<bucket isLr="D5" modelName="D5" promotion="true" modelInstance="lrD2BucketModel"/>
+    </Buckets>
+
+
+    <EnvDistribute logicBucket="OTHER_PLATFORM" realBucket="IOS_STABLE" desc="其他平台-稳定LR">
+        <client plat="81"  startPercent="0" endPercent="100"/>
+        <client plat="91"  startPercent="0" endPercent="100"/>
+        <client plat="92"  startPercent="0" endPercent="100"/>
+        <strategy name="PromotionStrategy" status="false"/>
+        <strategy name="PromotionByRankScoreStrategy" status="false"/>
+        <strategy name="PromotionExposureProfitStrategy" status="true"/>
+        <strategy name="PromotionExposureStrategy" status="false"/>
+        <strategy name="PromotionProfitStrategy" status="false"/>
+        <strategy name="PromotionUnifiedStrategy" status="false"/>
+        <strategy name="PromotionClickStrategy" status="false"/>
+        <strategy name="NotSameCityTuiguangLevelRerankStrategy" status="false"/>
+    </EnvDistribute>
+
+    <EnvDistribute logicBucket="IOS_CLICK" realBucket="IOS_STABLE" desc="点击限流实验">
+        <client plat="80" startPercent="0" endPercent="5"/>
+        <strategy name="PromotionStrategy" status="false"/>
+        <strategy name="PromotionByRankScoreStrategy" status="false"/>
+        <strategy name="PromotionExposureProfitStrategy" status="false"/>
+        <strategy name="PromotionExposureStrategy" status="false"/>
+        <strategy name="PromotionProfitStrategy" status="false"/>
+        <strategy name="PromotionUnifiedStrategy" status="false"/>
+        <strategy name="PromotionClickStrategy" status="true"/>
+        <strategy name="NotSameCityTuiguangLevelRerankStrategy" status="false"/>
+    </EnvDistribute>
+
+
+    <EnvDistribute logicBucket="IOS_STABLE_1" realBucket="IOS_STABLE" desc="D3稳定桶-限流+排序">
+        <client plat="80" startPercent="5" endPercent="15"/>
+        <strategy name="PromotionStrategy" status="false"/>
+        <strategy name="PromotionByRankScoreStrategy" status="false"/>
+        <strategy name="PromotionExposureProfitStrategy" status="true"/>
+        <strategy name="PromotionExposureStrategy" status="false"/>
+        <strategy name="PromotionProfitStrategy" status="false"/>
+        <strategy name="PromotionUnifiedStrategy" status="false"/>
+        <strategy name="PromotionClickStrategy" status="false"/>
+        <strategy name="NotSameCityTuiguangLevelRerankStrategy" status="false"/>
+    </EnvDistribute>
+
+
+    <EnvDistribute logicBucket="IOS_STABLE" realBucket="IOS_STABLE" desc="D3稳定桶-限流+排序">
+        <client plat="80" startPercent="15" endPercent="35"/>
+        <strategy name="PromotionStrategy" status="false"/>
+        <strategy name="PromotionByRankScoreStrategy" status="false"/>
+        <strategy name="PromotionExposureProfitStrategy" status="true"/>
+        <strategy name="PromotionExposureStrategy" status="false"/>
+        <strategy name="PromotionProfitStrategy" status="false"/>
+        <strategy name="PromotionUnifiedStrategy" status="false"/>
+        <strategy name="PromotionClickStrategy" status="false"/>
+        <strategy name="NotSameCityTuiguangLevelRerankStrategy" status="false"/>
+    </EnvDistribute>
+
+    <EnvDistribute logicBucket="IOS_NEWMODLE" realBucket="IOS_STABLE" desc="D3稳定桶-限流+排序">
+        <client plat="80" startPercent="35" endPercent="65"/>
+        <strategy name="PromotionStrategy" status="false"/>
+        <strategy name="PromotionByRankScoreStrategy" status="false"/>
+        <strategy name="PromotionExposureProfitStrategy" status="true"/>
+        <strategy name="PromotionExposureStrategy" status="false"/>
+        <strategy name="PromotionProfitStrategy" status="false"/>
+        <strategy name="PromotionUnifiedStrategy" status="false"/>
+        <strategy name="PromotionClickStrategy" status="false"/>
+        <strategy name="NotSameCityTuiguangLevelRerankStrategy" status="false"/>
+    </EnvDistribute>
+
+    <EnvDistribute logicBucket="EXP1" realBucket="D4" desc="特征优化LR模型-限流+排序">
+        <client plat="80" startPercent="65" endPercent="85"/>
+    <client plat="60" startPercent="65" endPercent="85"/>
+        <strategy name="PromotionStrategy" status="false"/>
+        <strategy name="PromotionByRankScoreStrategy" status="false"/>
+        <strategy name="PromotionExposureProfitStrategy" status="true"/>
+        <strategy name="PromotionExposureStrategy" status="false"/>
+        <strategy name="PromotionProfitStrategy" status="false"/>
+        <strategy name="PromotionUnifiedStrategy" status="false"/>
+        <strategy name="PromotionClickStrategy" status="false"/>
+        <strategy name="NotSameCityTuiguangLevelRerankStrategy" status="false"/>
+    </EnvDistribute>
+
+    <EnvDistribute logicBucket="IOS_PURE" realBucket="IOS_STABLE" desc="无推广">
+        <client plat="80" startPercent="85" endPercent="95"/>
+        <strategy name="PromotionStrategy" status="false"/>
+        <strategy name="PromotionByRankScoreStrategy" status="false"/>
+        <strategy name="PromotionExposureProfitStrategy" status="false"/>
+        <strategy name="PromotionExposureStrategy" status="false"/>
+        <strategy name="PromotionProfitStrategy" status="false"/>
+        <strategy name="PromotionUnifiedStrategy" status="false"/>
+        <strategy name="PromotionClickStrategy" status="false"/>
+        <strategy name="AdvertiseStrategy" status="false"/>
+        <strategy name="FlexibleAdjustStrategy" status="false"/>
+        <strategy name="InsertSpecialHotelStrategy" status="false"/>
+        <strategy name="ZhekouBaofangPromotionStrategy" status="false"/>
+        <strategy name="BaofangAutoLevelStrategy" status="false"/>
+        <strategy name="NearByForceOneStrategy" status="false"/>
+        <strategy name="CustomizeHotelListStrategy" status="false"/>
+        <strategy name="BlackListStrategy" status="false"/>
+        <strategy name="NotSameCityTuiguangLevelRerankStrategy" status="false"/>
+<strategy name="ChangeBangdanHotelPostionsStrategy" status="false"/>
+<strategy name="LmPromotionStrategy" status="false"/>
+<strategy name="TopOneAdjustStrategy" status="false"/>
+<strategy name="UnbookHotelFrontStrategy" status="false"/>
+    </EnvDistribute>
+
+
+    <EnvDistribute logicBucket="ADR_CLICK" realBucket="ADR_STABLE" desc="点击限流实验">
+        <client plat="60" startPercent="0" endPercent="5"/>
+        <strategy name="PromotionStrategy" status="false"/>
+        <strategy name="PromotionByRankScoreStrategy" status="false"/>
+        <strategy name="PromotionExposureProfitStrategy" status="false"/>
+        <strategy name="PromotionExposureStrategy" status="false"/>
+        <strategy name="PromotionProfitStrategy" status="false"/>
+        <strategy name="PromotionUnifiedStrategy" status="false"/>
+        <strategy name="PromotionClickStrategy" status="true"/>
+        <strategy name="NotSameCityTuiguangLevelRerankStrategy" status="false"/>
+    </EnvDistribute>
+
+
+    <EnvDistribute logicBucket="ADR_STABLE_1“" realBucket="ADR_STABLE" desc="D3稳定桶-限流+收益排序">
+        <client plat="60" startPercent="5" endPercent="15"/>
+        <strategy name="PromotionStrategy" status="false"/>
+        <strategy name="PromotionByRankScoreStrategy" status="false"/>
+        <strategy name="PromotionExposureProfitStrategy" status="true"/>
+        <strategy name="PromotionExposureStrategy" status="false"/>
+        <strategy name="PromotionProfitStrategy" status="false"/>
+        <strategy name="PromotionUnifiedStrategy" status="false"/>
+        <strategy name="PromotionClickStrategy" status="false"/>
+        <strategy name="NotSameCityTuiguangLevelRerankStrategy" status="false"/>
+    </EnvDistribute>
+
+    <EnvDistribute logicBucket="ADR_STABLE" realBucket="ADR_STABLE" desc="D3稳定桶-限流+收益排序">
+        <client plat="60" startPercent="15" endPercent="35"/>
+        <strategy name="PromotionStrategy" status="false"/>
+        <strategy name="PromotionByRankScoreStrategy" status="false"/>
+        <strategy name="PromotionExposureProfitStrategy" status="true"/>
+        <strategy name="PromotionExposureStrategy" status="false"/>
+        <strategy name="PromotionProfitStrategy" status="false"/>
+        <strategy name="PromotionUnifiedStrategy" status="false"/>
+        <strategy name="PromotionClickStrategy" status="false"/>
+        <strategy name="NotSameCityTuiguangLevelRerankStrategy" status="false"/>
+    </EnvDistribute>
+
+    <EnvDistribute logicBucket="ADR_NEWMODEL" realBucket="ADR_STABLE" desc="新模型预留-限流+收益排序">
+        <client plat="60" startPercent="35" endPercent="65"/>
+        <strategy name="PromotionStrategy" status="false"/>
+        <strategy name="PromotionByRankScoreStrategy" status="false"/>
+        <strategy name="PromotionExposureProfitStrategy" status="true"/>
+        <strategy name="PromotionExposureStrategy" status="false"/>
+        <strategy name="PromotionProfitStrategy" status="false"/>
+        <strategy name="PromotionUnifiedStrategy" status="false"/>
+        <strategy name="PromotionClickStrategy" status="false"/>
+        <strategy name="NotSameCityTuiguangLevelRerankStrategy" status="false"/>
+    </EnvDistribute>
+
+    <EnvDistribute logicBucket="ADR_PURE" realBucket="ADR_STABLE" desc="无推广">
+        <client plat="60" startPercent="85" endPercent="95"/>
+        <strategy name="PromotionStrategy" status="false"/>
+        <strategy name="PromotionByRankScoreStrategy" status="false"/>
+        <strategy name="PromotionExposureProfitStrategy" status="false"/>
+        <strategy name="PromotionExposureStrategy" status="false"/>
+        <strategy name="PromotionProfitStrategy" status="false"/>
+        <strategy name="PromotionUnifiedStrategy" status="false"/>
+        <strategy name="PromotionClickStrategy" status="false"/>
+        <strategy name="AdvertiseStrategy" status="false"/>
+        <strategy name="FlexibleAdjustStrategy" status="false"/>
+        <strategy name="InsertSpecialHotelStrategy" status="false"/>
+        <strategy name="ZhekouBaofangPromotionStrategy" status="false"/>
+        <strategy name="BaofangAutoLevelStrategy" status="false"/>
+        <strategy name="NearByForceOneStrategy" status="false"/>
+        <strategy name="CustomizeHotelListStrategy" status="false"/>
+        <strategy name="BlackListStrategy" status="false"/>
+        <strategy name="NotSameCityTuiguangLevelRerankStrategy" status="false"/>
+<strategy name="ChangeBangdanHotelPostionsStrategy" status="false"/>
+<strategy name="LmPromotionStrategy" status="false"/>
+<strategy name="TopOneAdjustStrategy" status="false"/>
+<strategy name="UnbookHotelFrontStrategy" status="false"/>
+    </EnvDistribute>
+
+    <EnvDistribute logicBucket="BASE" realBucket="BASE" desc="限流+收益排序">
+        <client plat="60" startPercent="95" endPercent="100"/>
+        <client plat="80" startPercent="95" endPercent="100"/>
+        <strategy name="PromotionStrategy" status="false"/>
+        <strategy name="PromotionByRankScoreStrategy" status="false"/>
+        <strategy name="PromotionExposureProfitStrategy" status="true"/>
+        <strategy name="PromotionExposureStrategy" status="false"/>
+        <strategy name="PromotionProfitStrategy" status="false"/>
+        <strategy name="PromotionUnifiedStrategy" status="false"/>
+        <strategy name="PromotionClickStrategy" status="false"/>
+        <strategy name="NotSameCityTuiguangLevelRerankStrategy" status="false"/>
+    </EnvDistribute>
+
+
+    <EnvDistribute logicBucket="MOCK_1" realBucket="MOCK" desc="MOCK环境">
+        <client plat="60" startPercent="-1" endPercent="-1"/>
+        <client plat="80" startPercent="-1" endPercent="-1"/>
+        <strategy name="PromotionStrategy" status="false"/>
+        <strategy name="PromotionByRankScoreStrategy" status="false"/>
+        <strategy name="PromotionExposureProfitStrategy" status="true"/>
+        <strategy name="PromotionExposureStrategy" status="false"/>
+        <strategy name="PromotionProfitStrategy" status="false"/>
+        <strategy name="PromotionUnifiedStrategy" status="false"/>
+        <strategy name="PromotionClickStrategy" status="false"/>
+        <strategy name="NotSameCityTuiguangLevelRerankStrategy" status="false"/>
+    </EnvDistribute>
+
+
+    <WhiteUid>
+    </WhiteUid>
+    <BlackUid>
+    <uid value="abfe9c3a6cc9724d1213baba66b2ecbb88343956" desc=""/>
+    <uid value="02:00:00:00:00:00" desc=""/>
+    <regexUid value="000000.*" desc="正则匹配"/>
+    </BlackUid>
+</root>
