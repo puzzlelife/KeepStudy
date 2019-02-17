@@ -1,5 +1,6 @@
 package builder;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,10 +22,7 @@ public abstract class Meal {
     }
 
     public double getCost(){
-        double cost=0;
-        for (Item item : combo) {
-            cost+=item.price();
-        }
+        double cost=combo.stream().filter(item -> item.price()!=0.0).mapToDouble(Item::price).sum();
         return cost;
     }
 
